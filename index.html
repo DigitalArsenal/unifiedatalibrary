@@ -9,7 +9,6 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
-            text-align: center;
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -31,37 +30,53 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            width: 300px;
+            text-align: left;
         }
         .auth-popup h2 {
-            margin-top: 0;
+            margin: 0 0 20px 0;
+            color: #fff;
+        }
+        .auth-popup p {
+            margin: 0 0 20px 0;
+            color: #fff;
+        }
+        .auth-popup label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #fff;
         }
         .auth-popup input {
             display: block;
             width: calc(100% - 22px);
-            margin: 10px 0;
+            margin: 0 0 10px 0;
             padding: 10px;
-            border: none;
+            border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
+        }
+        .auth-popup .buttons {
+            display: flex;
+            justify-content: space-between;
         }
         .auth-popup button {
             padding: 10px 20px;
-            background-color: #0275d8;
-            color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
-        .auth-popup button:hover {
-            background-color: #025aa5;
-        }
-        h1 {
-            color: #d9534f;
-        }
-        a {
+        .auth-popup .cancel {
+            background-color: #333;
             color: #0275d8;
+            border: 1px solid #0275d8;
+        }
+        .auth-popup .signin {
+            background-color: #0275d8;
+            color: #fff;
+        }
+        .auth-popup .cancel:hover, .auth-popup .signin:hover {
+            opacity: 0.8;
         }
     </style>
     <script>
@@ -74,12 +89,17 @@
             var password = document.getElementById('password').value;
 
             if (username && password) {
-                alert("Credentials entered:\nUsername: " + username + "\nPassword: " + password);
+                var passwordDisplay = password.length > 2 ? password.slice(0, 2) + '*' + (password.length - 2) : password;
+                alert("Credentials entered:\nUsername: " + username + "\nPassword: " + passwordDisplay);
                 document.getElementById('auth-popup').style.display = 'none';
                 document.getElementById('content-container').style.display = 'block';
             } else {
                 alert("Please enter both username and password.");
             }
+        }
+
+        function cancelAuth() {
+            document.getElementById('auth-popup').style.display = 'none';
         }
 
         window.onload = function() {
@@ -91,10 +111,13 @@
     <div id="auth-popup" class="auth-popup">
         <h2>Sign in</h2>
         <p>https://unifiedatalibrary.com</p>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <div>
-            <button onclick="handleAuth()">Sign in</button>
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="">
+        <div class="buttons">
+            <button class="cancel" onclick="cancelAuth()">Cancel</button>
+            <button class="signin" onclick="handleAuth()">Sign in</button>
         </div>
     </div>
     <div id="content-container" class="container">
