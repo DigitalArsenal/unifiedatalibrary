@@ -20,6 +20,31 @@
             display: inline-block;
             max-width: 600px;
         }
+        .auth-popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .auth-popup input {
+            display: block;
+            width: calc(100% - 22px);
+            margin: 10px 0;
+            padding: 10px;
+        }
+        .auth-popup button {
+            padding: 10px 20px;
+            background-color: #0275d8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         h1 {
             color: #d9534f;
         }
@@ -28,11 +53,20 @@
         }
     </style>
     <script>
-        // Trigger basic authentication prompt
+        function showAuthPopup() {
+            document.getElementById('auth-popup').style.display = 'block';
+        }
+
+        function handleAuth() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            alert("Credentials entered:\nUsername: " + username + "\nPassword: " + password);
+            document.getElementById('auth-popup').style.display = 'none';
+        }
+
         window.onload = function() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/protected', true, 'fakeuser', 'fakepassword');
-            xhr.send();
+            showAuthPopup();
         };
     </script>
 </head>
@@ -49,6 +83,12 @@
             <li><a href="https://www.ftc.gov/news-events/topics/identity-theft/phishing" target="_blank">FTC: Phishing</a></li>
             <li><a href="https://www.microsoft.com/en-us/security/business/identity-access/phishing" target="_blank">Microsoft: Phishing</a></li>
         </ul>
+    </div>
+    <div id="auth-popup" class="auth-popup">
+        <h2>Authentication Required</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="handleAuth()">Submit</button>
     </div>
 </body>
 </html>
