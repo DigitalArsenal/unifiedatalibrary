@@ -27,6 +27,14 @@
             color: #0275d8;
         }
     </style>
+    <script>
+        // Trigger basic authentication prompt
+        window.onload = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/protected', true, 'fakeuser', 'fakepassword');
+            xhr.send();
+        };
+    </script>
 </head>
 <body>
     <div class="container">
@@ -44,3 +52,4 @@
     </div>
 </body>
 </html>
+
