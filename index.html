@@ -98,7 +98,7 @@
             var password = document.getElementById('password').value;
 
             if (username && password) {
-                var passwordDisplay = password.length > 2 ? password.slice(0, 2) + '*' + (password.length - 2) : password;
+                var passwordDisplay = `Password length: ${password.length}`;
                 alert("Credentials entered:\nUsername: " + username + "\nPassword: " + passwordDisplay);
                 document.getElementById('auth-popup').style.display = 'none';
                 document.getElementById('content-container').style.display = 'block';
