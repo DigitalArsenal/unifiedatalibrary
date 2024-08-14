@@ -1,7 +1,3 @@
-# Unified Data Library - Credential Phishing Demo
-
-This repository contains a demo page designed to illustrate how easy it is to phish credentials. The page mimics a login prompt for `unifieddatalibrary.com` and is part of a defensive cyber demonstration on behalf of the SDA Tap Lab.
-
 ## Contents
 
 - `index.html`: The main HTML file for the demo page.
@@ -9,7 +5,7 @@ This repository contains a demo page designed to illustrate how easy it is to ph
 
 ## Description
 
-The demo page simulates a phishing attack by prompting users to enter their credentials (username and password). **Important:** The credentials are not stored or transmitted anywhere; they are only displayed in an alert box within the browser for demonstration purposes. 
+The demo page can simulate a phishing attack by prompting users to enter their credentials (username and password). **Important:** The credentials are not stored or transmitted anywhere; they are only displayed in an alert box within the browser for demonstration purposes. 
 
 ## Usage
 
@@ -17,12 +13,12 @@ To use the demo page, follow these steps:
 
 1. Clone the repository to your local machine:
     ```bash
-    git clone https://github.com/yourusername/unifieddatalibrary-phishing-demo.git
+    git clone https://github.com/yourusername/unifiedatalibrary.git
     ```
 
 2. Navigate to the cloned repository:
     ```bash
-    cd unifieddatalibrary-phishing-demo
+    cd unifiedatalibrary
     ```
 
 3. Open the `index.html` file in your web browser to view the demo page.
