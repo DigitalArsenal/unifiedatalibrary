@@ -1,154 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unified Data Library - Credential Phishing Demo</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unified Ata Library</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            display: none;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-        }
-        .auth-popup {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            width: 300px;
-            text-align: left;
-            position: fixed;
-            top: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .auth-popup h2 {
-            margin: 0 0 20px 0;
-            color: #fff;
-        }
-        .auth-popup p {
-            margin: 0 0 20px 0;
-            color: #fff;
-        }
-        .auth-popup .form-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .auth-popup .form-group label {
-            margin-right: 10px;
-            width: 80px;
-            color: #fff;
-        }
-        .auth-popup input {
-            display: block;
-            width: calc(100% - 100px);
-            margin: 0;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .auth-popup .buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-        .auth-popup button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .auth-popup .cancel {
-            background-color: #333;
-            color: #4a90e2;
-            border: 1px solid #4a90e2;
-        }
-        .auth-popup .signin {
-            background-color: #4a90e2;
-            color: #fff;
-        }
-        .auth-popup .cancel:hover, .auth-popup .signin:hover {
-            opacity: 0.8;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        display: block;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+      }
+      .auth-popup {
+        display: none;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        width: 300px;
+        text-align: left;
+        position: fixed;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .auth-popup h2 {
+        margin: 0 0 20px 0;
+        color: #fff;
+      }
+      .auth-popup p {
+        margin: 0 0 20px 0;
+        color: #fff;
+      }
+      .auth-popup .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .auth-popup .form-group label {
+        margin-right: 10px;
+        width: 80px;
+        color: #fff;
+      }
+      .auth-popup input {
+        display: block;
+        width: calc(100% - 100px);
+        margin: 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .auth-popup .buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+      .auth-popup button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .auth-popup .cancel {
+        background-color: #333;
+        color: #4a90e2;
+        border: 1px solid #4a90e2;
+      }
+      .auth-popup .signin {
+        background-color: #4a90e2;
+        color: #fff;
+      }
+      .auth-popup .cancel:hover,
+      .auth-popup .signin:hover {
+        opacity: 0.8;
+      }
     </style>
     <script>
-        function showAuthPopup() {
-            document.getElementById('auth-popup').style.display = 'block';
+      function showAuthPopup() {
+        document.getElementById("auth-popup").style.display = "block";
+      }
+
+      function handleAuth() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if (username && password) {
+          var passwordDisplay = `Password length: ${password.length}`;
+          alert(
+            "Credentials entered:\nUsername: " +
+              username +
+              "\nPassword: " +
+              passwordDisplay
+          );
+          document.getElementById("auth-popup").style.display = "none";
+          document.getElementById("content-container").style.display = "block";
+        } else {
+          alert("Please enter both username and password.");
         }
+      }
 
-        function handleAuth() {
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-
-            if (username && password) {
-                var passwordDisplay = `Password length: ${password.length}`;
-                alert("Credentials entered:\nUsername: " + username + "\nPassword: " + passwordDisplay);
-                document.getElementById('auth-popup').style.display = 'none';
-                document.getElementById('content-container').style.display = 'block';
-            } else {
-                alert("Please enter both username and password.");
-            }
-        }
-
-        function cancelAuth() {
-            document.getElementById('auth-popup').style.display = 'none';
-            document.getElementById('content-container').style.display = 'block';
-        }
-
-        window.onload = function() {
-            showAuthPopup();
-        };
+      function cancelAuth() {
+        document.getElementById("auth-popup").style.display = "none";
+        document.getElementById("content-container").style.display = "block";
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="auth-popup" class="auth-popup">
-        <h2>Sign in</h2>
-        <p>https://unifiedatalibrary.com</p>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="">
-        </div>
-        <div class="buttons">
-            <button class="cancel" onclick="cancelAuth()">Cancel</button>
-            <button class="signin" onclick="handleAuth()">Sign in</button>
-        </div>
+      <h2>Sign in</h2>
+      <p>https://unifiedatalibrary.com</p>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="" />
+      </div>
+      <div class="buttons">
+        <button class="cancel" onclick="cancelAuth()">Cancel</button>
+        <button class="signin" onclick="handleAuth()">Sign in</button>
+      </div>
     </div>
     <div id="content-container" class="container">
-        <h1>Notice</h1>
-        <p>You are on <strong>unifiedatalibrary.com</strong> instead of <strong>unifieddatalibrary.com</strong>.</p>
-        <p>The source code to this page is here: <a href="https://github.com/DigitalArsenal/unifiedatalibrary">Link</a>
-        <p>This is a demo showcasing how easy it is to phish credentials.</p>
-        <p>This demo is a part of a defensive cyber demonstration on behalf of the <a href="https://sdataplab.org" target="_blank">SDA Tap Lab (sdataplab.org)</a>.</p>
-        <h2>Learn More About Phishing</h2>
-        <ul>
-            <li><a href="https://www.phishing.org/what-is-phishing" target="_blank">What is Phishing?</a></li>
-            <li><a href="https://www.cisa.gov/topics/cybersecurity-threats/phishing" target="_blank">CISA: Phishing</a></li>
-            <li><a href="https://www.ftc.gov/news-events/topics/identity-theft/phishing" target="_blank">FTC: Phishing</a></li>
-            <li><a href="https://www.microsoft.com/en-us/security/business/identity-access/phishing" target="_blank">Microsoft: Phishing</a></li>
-        </ul>
+      <h1>Notice</h1>
+      <p>
+        You are on <strong>unifiedatalibrary.com</strong> instead of
+        <strong
+          ><a href="unifieddatalibrary.com">unifieddatalibrary.com</a></strong
+        >.
+      </p>
+      <p>
+        The source code to this page is here:
+        <a href="https://github.com/DigitalArsenal/unifiedatalibrary">Link</a>
+      </p>
+      <p>
+        This page is hosted by DigitalArsenal.io, as a demo and part of a
+        initiative to protect public-facing United States Government space domain awareness sites from expired / similar domain registration and <a href="https://en.wikipedia.org/wiki/Typosquatting">"typosquatting"</a>,
+        including <a href="spacetrack.org">spacetrack.org</a> and <a href="spacedatasource.org">spacedatasource.org</a>.
+      </p>
+      <p>There is a standing offer by DigitalArsenal.io to transfer these domains, at cost, to the government agencies and 
+        contractors performing these missions under <a href="https://www.govinfo.gov/app/details/USCODE-2010-title10/USCODE-2010-title10-subtitleA-partIV-chap135-sec2274">Title 10, Sec. 2274</a>. 
+    </p>
+      <ul>
+        <li>
+          <a href="https://www.phishing.org/what-is-phishing" target="_blank"
+            >What is Phishing?</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.cisa.gov/topics/cybersecurity-threats/phishing"
+            target="_blank"
+            >CISA: Phishing</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.ftc.gov/news-events/topics/identity-theft/phishing"
+            target="_blank"
+            >FTC: Phishing</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.microsoft.com/en-us/security/business/identity-access/phishing"
+            target="_blank"
+            >Microsoft: Phishing</a
+          >
+        </li>
+      </ul>
     </div>
-</body>
+  </body>
 </html>
-
-
