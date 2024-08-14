@@ -5,7 +5,9 @@
 
 ## Description
 
-The demo page can simulate a phishing attack by prompting users to enter their credentials (username and password). **Important:** The credentials are not stored or transmitted anywhere; they are only displayed in an alert box within the browser for demonstration purposes. 
+The demo page can simulate a phishing attack by prompting users to enter their credentials (username and password). 
+
+**Important:** The credentials are not stored or transmitted anywhere; they are only displayed in an alert box within the browser for demonstration purposes. 
 
 ## Usage
 
